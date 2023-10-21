@@ -9,8 +9,13 @@
   "author": "",
   "devDependencies": {
     "chai": "^4.3.10",
+    "chai-as-promised": "^7.1.1",
     "coffeescript": "^2.7.0",
     "mocha": "^10.2.0",
     "sinon": "^17.0.0"
+  },
+  "dependencies": {
+    "promise": "^8.3.0",
+    "request": "^2.88.2"
   }
 }
