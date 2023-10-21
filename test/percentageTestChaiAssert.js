@@ -1,5 +1,5 @@
 const assert = require('chai').assert
-let Percentage = require("../lib/percentage")
+let Percentage = require("../lib/Percentage")
 
 describe("Percentage", function () {
   describe("#evolution", function ()
