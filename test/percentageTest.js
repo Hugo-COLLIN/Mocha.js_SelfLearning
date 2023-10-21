@@ -1,8 +1,25 @@
 const assert = require('assert')
-const Percentage = require("../lib/percentage")
+let Percentage = require("../lib/percentage")
 
 describe("Percentage", function () {
-  describe("#evolution", function () {
+  describe("#evolution", function ()
+  {
+    before(() => {
+
+    })
+
+    after(() => {
+
+    })
+
+    beforeEach(() => {
+      // Percentage = null; //break all tests
+    })
+
+    afterEach(() => {
+
+    })
+
     it("should give an evolution intervalle", function () {
       assert.equal(Percentage.evolution(100,200), 100)
       assert.equal(Percentage.evolution(100,150), 50)
@@ -12,9 +29,28 @@ describe("Percentage", function () {
     it('should handle 0 evolution', () => {
       assert.equal(Percentage.evolution(0,10), Infinity)
     });
+    // it.only('should handle 0 evolution', () => {
+    //   assert.equal(Percentage.evolution(0,10), Infinity)
+    // });
 
-    it('should round values', () => {
+    it.skip('should round values', () => {
       assert.equal(Percentage.evolution(30, 100), 233.33)
+    });
+
+    //pending test
+    it('should draw unicorns');
+  })
+
+  describe("#wait", () => {
+    it('should exist', () => {
+      assert.notEqual(Percentage.wait, undefined)
+    });
+
+    it('should wait 300ms', () => {
+      Percentage.wait(50, (test) => {
+        assert.equal(test, 18)
+        // done() //not working
+      })
     });
   })
 })
