@@ -1,3 +1,8 @@
+// Note:
+// - Stub: modifier une fonction
+// - Spy: écouter une fonction
+// - Mock: Spy + Stub
+
 // Tests libs
 const chai = require('chai')
 const expect = chai.expect;
@@ -15,8 +20,8 @@ describe("Social", () => {
     expect(Social).has.property("reqres_url")
   });
 
-  it('should have facebook_url', () => {
-    expect(Social).has.property("facebook_url")
+  it('should have jsonPlaceholder_url', () => {
+    expect(Social).has.property("jsonPlaceholder_url")
   });
 
   describe('#getReqresCount', () =>
@@ -45,6 +50,40 @@ describe("Social", () => {
       //   done()
       // })
       expect(Social.getReqresCount()).eventually.equal(12).notify(done); // replace above by using chai-as-promised
+      // return expect(Social.getReqresCount()).eventually.equal(12) // use done or return
+
+      // return Promise.all([
+      //   expect(Social.getReqresCount()).eventually.equal(12),
+      //   expect(Social.getReqresCount()).eventually.equal(12),
+      //   expect(Social.getReqresCount()).eventually.equal(12),
+      //   expect(Social.getReqresCount()).eventually.equal(12)
+      // ])
     });
+
+
+    afterEach(() => {
+      if (Social.callAPI.restore) {
+        Social.callAPI.restore()
+      }
+    })
   });
+
+
+  describe("#getJsonPlaceholderCount", () => {
+
+    it('should return shares', (done) => {
+      const mock = sinon.mock(Social)
+      mock.expects('callAPI')
+        .once()
+        .withArgs(Social.jsonPlaceholder_url)
+        .resolves({id:1})
+      // mock.expects('callAPI').twice().withArgs(Social.jsonPlaceholder_url)
+      // Social.getJsonPlaceholderCount()
+      expect(Social.getJsonPlaceholderCount()).eventually.equal(1).notify(done)
+      mock.verify()
+      mock.restore()
+    });
+
+  })
+
 })
